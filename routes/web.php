@@ -15,11 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/signup', function () {
-    return view('signup',[
-    	'name' => '123',
-    ]);
-});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
