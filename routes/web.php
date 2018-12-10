@@ -20,3 +20,6 @@ Route::get('/signup', function () {
     	'name' => '123',
     ]);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
