@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript">
+	function selectOrange(){
+		document.getElementByValue("banana").selected=true;
+	}
+</script>
+<body>
+<select>
+	<option value="apple">苹果</option>
+	<option value="orange">桔子</option>
+	<option value="pineapple" selected="selected">菠萝</option>
+	<option value="banana">香蕉</option>
+	</select>
+<button onclick="selectOrange()">选择香蕉</button>
+</body>
+</html>
