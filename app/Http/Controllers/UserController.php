@@ -21,31 +21,31 @@ class UserController extends Controller
      */
     public function profile()
     {
-        switch (Auth::user()->user_type_id)
+        switch (Auth::user()->user_type)
         {
-//            case 1: return view('college.welcome');
-            case 2: return StudentController::profile();
-//            case 3: return view('teacher.welcome');
+//            case 'college': return view('college.welcome');
+            case 'student': return StudentController::profile();
+//            case 'teacher': return view('teacher.welcome');
 //            default: return view('');
         }
     }
     public function profileEdit()
     {
-        switch (Auth::user()->user_type_id)
+        switch (Auth::user()->user_type)
         {
-//            case 1: return view('college.welcome');
-            case 2: return StudentController::profileEdit();
-//            case 3: return view('teacher.welcome');
+//            case 'college': return view('college.welcome');
+            case 'student': return StudentController::profileEdit();
+//            case 'teacher': return view('teacher.welcome');
 //            default: return view('');
         }
     }
     public function profileUpdate(Request $request)
     {
-        switch (Auth::user()->user_type_id)
+        switch (Auth::user()->user_type)
         {
-//            case 1: return view('college.welcome');
-            case 2: return StudentController::profileUpdate($request);
-//            case 3: return view('teacher.welcome');
+//            case 'college': return view('college.welcome');
+            case 'student': return StudentController::profileUpdate($request);
+//            case 'teacher': return view('teacher.welcome');
 //            default: return view('');
         }
     }
@@ -57,11 +57,11 @@ class UserController extends Controller
      */
     public function account()
     {
-        switch (Auth::user()->user_type_id)
+        switch (Auth::user()->user_type)
         {
-//            case 1: return view('college.account_info');
-            case 2: return view('student.account_info');
-//            case 3: return view('teacher.account_info');
+//            case 'college': return view('college.account_info');
+            case 'student': return view('student.account_info');
+//            case 'teacher': return view('teacher.account_info');
 //            default: return view('');
         }
     }

@@ -19,7 +19,7 @@ class StudentController extends Controller
             ->join('students', 'users.account', 'students.Number')
             ->where('users.account', '=', Auth::user()->account)
             ->select(
-                'users.user_type_id',
+                'users.user_type',
                 'students.Number as number',
                 'students.Name as name',
                 'students.Email as email',
@@ -41,7 +41,7 @@ class StudentController extends Controller
             ->join('students', 'users.account', 'students.Number')
             ->where('users.account', '=', Auth::user()->account)
             ->select(
-                'users.user_type_id',
+                'users.user_type',
                 'students.Number as number',
                 'students.Name as name',
                 'students.Email as email',

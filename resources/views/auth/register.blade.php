@@ -45,7 +45,7 @@
                             <label for="user_type" class="col-md-4 control-label">user_type</label>
 
                             <div class="col-md-6">
-                                <input id="user_type" type="text" class="form-control" name="user_type" value="1" required>
+                                <input id="user_type" type="text" class="form-control" name="user_type" value="student" required>
 
                                 @if ($errors->has('user_type'))
                                     <span class="help-block">

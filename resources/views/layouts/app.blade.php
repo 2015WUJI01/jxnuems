@@ -39,10 +39,10 @@
                         &nbsp;
                         <li><a href="{{ url('/') }}">首页</a></li>
                         @if(Auth::check())
-                            @switch(Auth::user()->user_type_id)
-                                @case(1)<li><a href="{{ route('home') }}">学院之家</a></li>@break
-                                @case(2)<li><a href="{{ route('home') }}">学生之家</a></li>@break
-                                @case(3)<li><a href="{{ route('home') }}">教师之家</a></li>@break
+                            @switch(Auth::user()->user_type)
+                                @case('college')<li><a href="{{ route('home') }}">学院之家</a></li>@break
+                                @case('student')<li><a href="{{ route('home') }}">学生之家</a></li>@break
+                                @case('teacher')<li><a href="{{ route('home') }}">教师之家</a></li>@break
                                 @default其他
                             @endswitch
                         @endif
@@ -58,12 +58,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     <?php
-                                        switch(Auth::user()->user_type_id) {
-                                            case 1: $table = 'colleges'; break;
-                                            case 2: $table = 'students'; break;
-                                            case 3: $table = 'teachers'; break;
-                                            default : break;
-                                        }
+                                        $table = Auth::user()->user_type . 's';
                                         $auth = \Illuminate\Support\Facades\DB::table($table)
                                             ->where('number', '=', Auth::user()->account)
                                             ->select('Name as name')
@@ -71,7 +66,7 @@
                                         echo $auth->name;
                                     ?>
                                     {{--<small>--}}
-                                        {{--@switch(Auth::user()->user_type_id)--}}
+                                        {{--@switch(Auth::user()->user_type)--}}
                                             {{--@case(1)（学院）@break--}}
                                             {{--@case(2)（学生）@break--}}
                                             {{--@case(3)（教师）@break--}}
@@ -82,15 +77,15 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    @switch(Auth::user()->user_type_id)
-                                        @case(1){{-- 学院 --}}
+                                    @switch(Auth::user()->user_type)
+                                        @case('college'){{-- 学院 --}}
 
                                         @break
-                                        @case(2){{-- 学生 --}}
+                                        @case('student'){{-- 学生 --}}
                                         <li><a href="{{ route('profile') }}">个人信息</a></li>
                                         <li><a href="{{ route('account') }}">账号信息</a></li>
                                         @break
-                                        @case(3){{-- 教师 --}}
+                                        @case('teacher'){{-- 教师 --}}
                                         <li><a href="{{ route('profile') }}">个人信息</a></li>
                                         <li><a href="{{ route('account') }}">账号信息</a></li>
                                         @break

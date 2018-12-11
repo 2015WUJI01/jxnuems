@@ -21,13 +21,13 @@ class HomeController extends Controller
 
     public function home()
     {
-        switch (Auth::user()->user_type_id)
+        switch (Auth::user()->user_type)
         {
-            case 1:
+            case 'college':
 //                return view('college.home');
-            case 2:
+            case 'student':
                 return view('student.home');
-            case 3:
+            case 'teacher':
 //                return view('teacher.home');
             default:
                 return view('auth.passwords.reset');

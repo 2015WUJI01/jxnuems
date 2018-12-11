@@ -52,12 +52,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                     {{ Auth::user()->account }}
                                     <small>
-                                        @switch(Auth::user()->user_type_id)
-                                            @case(1)学院@break
-                                            @case(2)学生@break
-                                            @case(3)教师@break
-                                            @default其他
-                                        @endswitch
+                                        
                                     </small>
                                     <span class="caret"></span>
                                 </a>
