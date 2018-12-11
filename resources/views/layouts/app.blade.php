@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('page-title')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -37,6 +37,15 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li><a href="{{ url('/') }}">首页</a></li>
+                        @if(Auth::check())
+                            @switch(Auth::user()->user_type_id)
+                                @case(1)<li><a href="{{ route('home') }}">学院之家</a></li>@break
+                                @case(2)<li><a href="{{ route('home') }}">学生之家</a></li>@break
+                                @case(3)<li><a href="{{ route('home') }}">教师之家</a></li>@break
+                                @default其他
+                            @endswitch
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -48,15 +57,50 @@
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <?php
+                                        switch(Auth::user()->user_type_id) {
+                                            case 1: $table = 'colleges'; break;
+                                            case 2: $table = 'students'; break;
+                                            case 3: $table = 'teachers'; break;
+                                            default : break;
+                                        }
+                                        $auth = \Illuminate\Support\Facades\DB::table($table)
+                                            ->where('number', '=', Auth::user()->account)
+                                            ->select('Name as name')
+                                            ->first();
+                                        echo $auth->name;
+                                    ?>
+                                    {{--<small>--}}
+                                        {{--@switch(Auth::user()->user_type_id)--}}
+                                            {{--@case(1)（学院）@break--}}
+                                            {{--@case(2)（学生）@break--}}
+                                            {{--@case(3)（教师）@break--}}
+                                            {{--@default（其他）--}}
+                                        {{--@endswitch--}}
+                                    {{--</small>--}}
+                                    <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    @switch(Auth::user()->user_type_id)
+                                        @case(1){{-- 学院 --}}
+
+                                        @break
+                                        @case(2){{-- 学生 --}}
+                                        <li><a href="{{ route('profile') }}">个人信息</a></li>
+                                        <li><a href="{{ route('account') }}">账号信息</a></li>
+                                        @break
+                                        @case(3){{-- 教师 --}}
+                                        <li><a href="{{ route('profile') }}">个人信息</a></li>
+                                        <li><a href="{{ route('account') }}">账号信息</a></li>
+                                        @break
+                                        @default
+                                    @endswitch
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            退出登录
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
