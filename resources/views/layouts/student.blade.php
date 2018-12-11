@@ -38,14 +38,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="{{ url('/') }}">首页</a></li>
-                        @if(Auth::check())
-                            @switch(Auth::user()->user_type_id)
-                                @case(1)<li><a href="{{ route('home') }}">学院之家</a></li>@break
-                                @case(2)<li><a href="{{ route('home') }}">学生之家</a></li>@break
-                                @case(3)<li><a href="{{ route('home') }}">教师之家</a></li>@break
-                                @default其他
-                            @endswitch
-                        @endif
+                        <li><a href="{{ url('/home') }}">学生之家</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,13 +63,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ route('profile') }}">个人信息</a></li>
-                                    <li><a href="{{ route('account') }}">账号信息</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            退出登录
+                                            Logout
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
