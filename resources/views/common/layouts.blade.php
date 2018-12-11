@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>轻松学会Laravel - @yield('title')</title>
     <!-- Bootstrap CSS 文件 -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('static/bootstrap/css/bootstrap.min.css') }}">
-    @section('style')
+@section('style')
 
         @show
 </head>

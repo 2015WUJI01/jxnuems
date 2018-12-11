@@ -15,7 +15,7 @@
                     <th>年龄</th>
                     <th>性别</th>
                     <th>添加时间</th>
-                    <th width="220">操作</th>
+                    <th width="150">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +38,9 @@
     </div>
     {{--自定义分页--}}
         <div>
+            <div class="float-right">
+                {{ $students->render() }}
+            </div>
             <ul class="pagination float-right">
                 <li class="page-item">
                     <a href="#" class="page-link" aria-label="Previous">

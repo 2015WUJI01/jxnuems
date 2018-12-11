@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 class StudentController extends Controller{
@@ -28,9 +29,10 @@ class StudentController extends Controller{
 //        echo $request->input('sex', 'unknown');
 //    }
     public function index(){
-        $students = Student::get();
-        return view('student.index',[
-            '$students' => $students,
+//        paginate里面表示每页数据量
+        $students = Student::paginate(3);
+        return view('student.index', [
+            'students' => $students,
         ]);
 //        return view('student.index');
     }
