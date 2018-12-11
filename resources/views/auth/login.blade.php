@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('page-title', '登录')
+
 @section('content')
 <div class="container">
     <div class="row">
