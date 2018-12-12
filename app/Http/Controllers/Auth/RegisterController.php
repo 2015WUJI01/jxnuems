@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -63,6 +64,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $table = $data['user_type'] . 's';
+        DB::table($table)->insert([
+            'Number' => $data['account'],
+            'Name' => 'TempName - ' . $data['account'],
+            'Gender' => 0,
+            'College_id' => 1,
+        ]);
+
         return User::create([
             'account' => $data['account'],
 //            'email' => $data['email'],

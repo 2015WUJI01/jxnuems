@@ -18,6 +18,7 @@ class CreateStudentsTable extends Migration
             $table->increments('Id');
             $table->string('Number');
             $table->string('Name');
+            $table->integer('College_id');
             $table->tinyInteger('Gender');
             $table->string('Email')->unique()->nullable();
             $table->string('Tel')->unique()->nullable();

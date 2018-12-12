@@ -27,6 +27,12 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="collegeInput">学院</label>
+            <input type="text" class="form-control" id="collegeInput"
+                   placeholder="学院"
+                   value="{{ $user->college ? $user->college : '' }}" readonly>
+        </div>
+        <div class="form-group">
             <label for="telInput">联系电话</label>
             <input type="text" class="form-control" id="telInput"
                    placeholder="联系电话"

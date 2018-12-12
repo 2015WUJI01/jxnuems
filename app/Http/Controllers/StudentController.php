@@ -17,14 +17,17 @@ class StudentController extends Controller
     {
         $user = DB::table('users')
             ->join('students', 'users.account', 'students.Number')
+            ->join('colleges', 'colleges.Id', 'students.College_id')
             ->where('users.account', '=', Auth::user()->account)
             ->select(
                 'users.user_type',
                 'students.Number as number',
                 'students.Name as name',
+                'students.Name as college',
                 'students.Email as email',
                 'students.Gender as gender',
-                'students.Tel as tel'
+                'students.Tel as tel',
+                'colleges.Name as college'
                 )
             ->first();
         if (!$user) {
@@ -39,6 +42,7 @@ class StudentController extends Controller
     {
         $user = DB::table('users')
             ->join('students', 'users.account', 'students.Number')
+            ->join('colleges', 'colleges.Id', 'students.College_id')
             ->where('users.account', '=', Auth::user()->account)
             ->select(
                 'users.user_type',
@@ -46,7 +50,8 @@ class StudentController extends Controller
                 'students.Name as name',
                 'students.Email as email',
                 'students.Gender as gender',
-                'students.Tel as tel'
+                'students.Tel as tel',
+                'colleges.Name as college'
             )
             ->first();
         if (!$user) {
