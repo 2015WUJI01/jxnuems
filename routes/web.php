@@ -33,4 +33,11 @@ Route::get('/', function () {
 //Route::any('url', ['as' => 'url','uses' => 'StudentController@urlTest']);
 //Route::any('request1', ['uses' => 'StudentController@request1']);
 
-Route::get('student/index',['uses'=>'StudentController@index']);
+
+Route::group(['middleware'=>['web']], function(){
+
+    Route::get('student/index',['uses'=>'StudentController@index'])->name('index.student');
+    Route::any('student/create',['uses'=>'StudentController@create'])->name('create.student');
+    Route::any('student/save
+    ',['uses'=>'StudentController@save'])->name('save.student');
+});
